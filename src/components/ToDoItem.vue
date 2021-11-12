@@ -2,7 +2,7 @@
 
   <li style="display: flex; justify-content: space-between">
     <span role="button" :class="{ 'done' : todo.state }" @click="taskDone(todo)">{{ todo.text }}</span>
-    <span role="button" @click="deleteItem(todo.id)">X</span>
+    <i class="icon__cross" role="button" @click="deleteItem(todo.id)"></i>
   </li>
 </template>
 

@@ -5,7 +5,7 @@
           :key="todo.id"
           :todo="todo"
       ></ToDoItem>
-    <li v-if="todos.length <= 0">Todavía no tienes tareas :)</li>
+    <li v-if="todos.length <= 0">No tienes tareas :)</li>
   </transition-group>
 </template>
 
@@ -35,7 +35,3 @@ export default {
 
 }
 </script>
-
-<style scoped>
-
-</style>
