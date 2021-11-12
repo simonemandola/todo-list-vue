@@ -1,10 +1,12 @@
 <template>
-  <ol>
-    <ToDoItem
-        v-for="todo in todos" :key="todo.id"
-        :todo="todo"
-    ></ToDoItem>
-  </ol>
+  <transition-group tag="ol" name="fade-up" style="position: relative">
+      <ToDoItem
+          v-for="todo in todos"
+          :key="todo.id"
+          :todo="todo"
+      ></ToDoItem>
+    <li v-if="todos.length <= 0">Todavía no tienes tareas :)</li>
+  </transition-group>
 </template>
 
 <script>

@@ -1,4 +1,5 @@
 <template>
+
   <li style="display: flex; justify-content: space-between">
     <span role="button" :class="{ 'done' : todo.state }" @click="taskDone(todo)">{{ todo.text }}</span>
     <span role="button" @click="deleteItem(todo.id)">X</span>
@@ -50,4 +51,30 @@ export default {
 .done {
   text-decoration: line-through;
 }
+
+.fade-up-enter-from,
+.fade-up-leave-to {
+  opacity: 0;
+  transform: translateY(.2rem);
+}
+
+.fade-up-leave-from,
+.fade-up-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up-enter-active,
+.fade-up-leave-active {
+  transition: all .4s ease;
+}
+
+.fade-up-leave-active {
+  position: absolute;
+}
+
+li {
+  transition: all .4s ease;
+}
+
 </style>
