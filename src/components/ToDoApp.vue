@@ -6,6 +6,7 @@
     </header>
     <ToDoForm />
     <ToDoList />
+    <ToDoFooter />
     <footer>
       <p>Desarrollado por Simone Mandola</p>
     </footer>
@@ -16,18 +17,29 @@
 
 import ToDoForm from "@/components/ToDoForm";
 import ToDoList from "@/components/ToDoList";
+import ToDoFooter from "@/components/ToDoFooter";
 import { ref, provide, watchEffect } from "vue";
 
 export default {
   name: "ToDoApp",
   components: {
     ToDoForm,
-    ToDoList
+    ToDoList,
+    ToDoFooter
   },
   setup() {
 
-    const todos = ref([])
-    provide('todos', todos)
+    const todos = ref([]);
+    provide('todos', todos);
+
+    const toDoDuplicated = ref([]);
+    provide('toDoDuplicated', toDoDuplicated);
+
+    const itemsLeft = ref(0);
+    provide('itemsLeft', itemsLeft);
+
+    const toDoActive = ref([]);
+    provide('toDoActive', toDoActive);
 
     watchEffect(()=>{})
 

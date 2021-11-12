@@ -9,15 +9,16 @@
 
 <script>
 
-import {inject, ref} from "vue";
+import { inject, ref } from "vue";
 
 export default {
 
   name: "ToDoForm",
   setup() {
 
-    const todos = inject('todos')
-    const text = ref('')
+    const todos = inject('todos');
+    const text = ref('');
+    const itemsLeft = inject('itemsLeft');
 
     // Submit Form
     const addToDo = ()=> {
@@ -27,6 +28,7 @@ export default {
         return
       }
 
+      // Object class declaration
       const todo = {
         text: text.value,
         state: false,
@@ -35,6 +37,9 @@ export default {
 
       todos.value.push(todo)
       text.value = ''
+
+      itemsLeft.value = itemsLeft.value + 1
+
     }
 
     return {
