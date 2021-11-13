@@ -1,6 +1,6 @@
 <template>
 
-  <li style="display: flex; justify-content: space-between">
+  <li class="todo-list__item">
     <span role="button" :class="{ 'done' : todo.state }" @click="taskDone(todo)">{{ todo.text }}</span>
     <i class="icon__cross" role="button" @click="deleteItem(todo.id)"></i>
   </li>
@@ -48,9 +48,6 @@ export default {
 </script>
 
 <style>
-.done {
-  text-decoration: line-through;
-}
 
 .fade-up-enter-from,
 .fade-up-leave-to {

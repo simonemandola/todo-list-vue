@@ -31,20 +31,6 @@ picture {
     width: 100%;
 }
 
-/* Table: Standardize and modernize the appearance */
-table {
-    border-collapse: collapse;
-    margin-bottom: 10px;
-    width: 100%;
-}
-
-/* Table: Add border */
-td,
-th {
-    padding: .4rem;
-    border: 1px solid black;
-}
-
 /* Input: remove border radius */
 input {
   border-radius: 0;

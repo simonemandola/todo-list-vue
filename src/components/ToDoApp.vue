@@ -1,15 +1,16 @@
 <template>
-  <div>
-    <header class="header">
-      <h1>To do</h1>
-      <span>º</span>
-    </header>
-    <ToDoForm />
-    <ToDoList />
-    <footer>
-      <p>Desarrollado por Simone Mandola</p>
-    </footer>
-  </div>
+    <main>
+      <section class="todo-wrap">
+        <div class="todo-wrap__inner">
+          <header class="header">
+            <h1 class="title-h1">Todo</h1>
+            <i role="button" class="icon__sun"></i>
+          </header>
+          <ToDoForm/>
+          <ToDoList/>
+          <p class="text-xxs drag-text">Drag and drop to reorder list</p></div>
+      </section>
+    </main>
 </template>
 
 <script>
