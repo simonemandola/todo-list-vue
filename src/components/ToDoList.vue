@@ -27,11 +27,11 @@ export default {
     const todos = inject('todos')
 
     return {
-
       todos
     }
 
   }
 
 }
+
 </script>
