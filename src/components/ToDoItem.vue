@@ -1,5 +1,6 @@
 <template>
   <li class="todo-list__item">
+    <i role="button" class="icon__check todo-list__btn-check" :class="{ 'check-done' : todo.state }" @click="taskDone(todo)"></i>
     <span role="button" :class="{ 'done' : todo.state }" @click="taskDone(todo)">{{ todo.text }}</span>
     <i class="icon__cross" role="button" @click="deleteItem(todo.id)"></i>
   </li>
@@ -37,10 +38,13 @@ export default {
         }
       });
 
+      todos.value = toDoDuplicated.value;
       todos.value = todos.value.filter(item => item.id !== id);
+
       toDoDuplicated.value = todos.value;
 
       toDoActive.value = todos.value;
+
     }
 
     // Click on To Do
@@ -62,32 +66,3 @@ export default {
 
 }
 </script>
-
-<style>
-
-.fade-up-enter-from,
-.fade-up-leave-to {
-  opacity: 0;
-  transform: translateY(.2rem);
-}
-
-.fade-up-leave-from,
-.fade-up-enter-to {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-up-enter-active,
-.fade-up-leave-active {
-  transition: all .4s ease;
-}
-
-.fade-up-leave-active {
-  position: absolute;
-}
-
-li {
-  transition: all .4s ease;
-}
-
-</style>

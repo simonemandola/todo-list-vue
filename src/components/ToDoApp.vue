@@ -1,15 +1,20 @@
 <template>
     <main>
-      <section class="todo-wrap">
+      <section class="todo-wrap" :style="bgDark">
         <div class="todo-wrap__inner">
           <header class="header">
             <h1 class="title-h1">Todo</h1>
             <i role="button" class="icon__sun"></i>
           </header>
-          <ToDoForm/>
-          <ToDoList/>
-          <ToDoFooter />
-          <p class="text-xxs drag-text">Drag and drop to reorder list</p></div>
+          <ToDoForm />
+          <div class="todo-wrap__wrap-list">
+            <ToDoList/>
+            <ToDoFooter></ToDoFooter>
+          </div>
+          <p class="text-xxs drag-text" >Drag and drop to
+            reorder
+            list</p>
+        </div>
       </section>
     </main>
 </template>
@@ -42,7 +47,16 @@ export default {
     const toDoActive = ref([]);
     provide('toDoActive', toDoActive);
 
-    watchEffect(()=>{})
+    const bgDark = "background-image: url(\"../img/bg-desktop-dark.jpg\")";
+    const bgLight = "background-image: url(\"../img/bg-desktop-light.jpg\")";
+
+    watchEffect(()=>{});
+
+    return {
+      todos,
+      bgDark,
+      bgLight
+    }
 
   }
 }

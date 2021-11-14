@@ -1,10 +1,23 @@
 <template>
-  <div>
-    <span>Quedan <span>{{ itemsLeft }}</span></span>
-    <button type="button" @click.prevent="showAll">Todas</button>
-    <button type="button" @click.prevent="showActive">Activas</button>
-    <button type="button" @click.prevent="showComplete">Completadas</button>
-    <button type="button" @click.prevent="clean">Limpiar</button>
+  <div class="todo-footer">
+    <span class="text-xxs">{{ itemsLeft }}<span> items left</span></span>
+    <div class="todo-footer__btns-filter">
+      <button type="button"
+              :class="{ 'active' : btnActive.all }"
+              @click.prevent="showAll">All
+      </button>
+      <button type="button"
+              :class="{ 'active' : btnActive.active }"
+              @click.prevent="showActive">Active
+      </button>
+      <button type="button"
+              :class="{ 'active' : btnActive.completed }"
+              @click.prevent="showComplete">Completed
+      </button>
+    </div>
+    <button type="button"
+            @click.prevent="clean">Clear Completed
+    </button>
   </div>
 </template>
 
@@ -21,61 +34,73 @@ export default {
     const toDoDuplicated = inject('toDoDuplicated');
     const itemsLeft = inject('itemsLeft');
 
+    const btnActive = {
+      all: true,
+      active: false,
+      completed: false
+    };
+
     toDoDuplicated.value = todos.value;
     let toDoComplete = [];
-    // let cleaned = false;
 
+    // Button Show All to-do
     const showAll = ()=> {
-      
-      // if(cleaned) { // Update main array if was cleaned
-      //   if (toDoActive.value.length > 0) toDoDuplicated = toDoActive.value;
-      //   cleaned = false;
-      // }
+
+      btnActive.all = true;
+      btnActive.active = false;
+      btnActive.completed = false;
 
       todos.value = toDoDuplicated.value;
 
     };
 
+    // Button Show Active to-do
     const showActive = ()=> {
 
-      let active = false
-
       todos.value = toDoDuplicated.value;
-
-      // if ( toDoActive.value.length > 0 ) todos.value = toDoActive.value;
 
       // Check if exist
       toDoDuplicated.value.forEach(task => {
-        if(task.state) active = true
-      })
+        if(!task.state){
 
-      if (active) {
-        toDoActive.value = todos.value.filter(task => !task.state)
-        todos.value = toDoActive.value;
-      }
+          toDoActive.value = todos.value.filter(task => !task.state)
+          todos.value = toDoActive.value;
+          btnActive.all = false;
+          btnActive.active = true;
+          btnActive.completed = false;
+        }
+      });
 
     };
 
+    // Button Show Complete to-do
     const showComplete = ()=> {
-
-      let completed = false
 
       todos.value = toDoDuplicated.value;
 
       // Check if exist
       todos.value.forEach(task => {
-        if(task.state) completed = true
+        if(task.state) {
+
+          btnActive.all = false;
+          btnActive.active = false;
+          btnActive.completed = true;
+
+          toDoComplete = todos.value.filter(task => task.state);
+          todos.value = toDoComplete;
+        }
       });
 
-      if(completed) {
-        toDoComplete = todos.value.filter(task => task.state);
-        // toDoActive.value = todos.value.filter(task => !task.state)
-        todos.value = toDoComplete;
-      }
+
 
     };
 
+    // Button Clean Completed to-do
     const clean = ()=> {
+
+      btnActive.all = true;
+      btnActive.active = false;
+      btnActive.completed = false;
 
       todos.value = toDoDuplicated.value;
 
@@ -85,15 +110,16 @@ export default {
 
     };
 
-
     return {
       showAll,
       showActive,
       showComplete,
       clean,
-      itemsLeft
+      itemsLeft,
+      btnActive,
     }
   }
+
 }
 </script>
 

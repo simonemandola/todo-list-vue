@@ -2,8 +2,10 @@
   <form class="todo-form" @submit.prevent="addToDo">
     <span class="todo-form__circle-empty"></span>
     <input type="text"
-    placeholder="Create a new todo..."
-    v-model.trim="text"
+           placeholder="Create a new todo..."
+           tabindex="1"
+           autofocus
+           v-model.trim="text"
     >
   </form>
 </template>
