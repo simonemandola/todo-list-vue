@@ -5,14 +5,17 @@
           :key="todo.id"
           :todo="todo"
       ></ToDoItem>
-<!--    <li v-if="todos.length <= 0">No tienes tareas :)</li>-->
   </transition-group>
+  <transition name="fade-up">
+    <ToDoFooter ></ToDoFooter>
+  </transition>
 </template>
 
 <script>
 
-import { inject } from "vue";
+import {computed, inject, provide, ref} from "vue";
 import ToDoItem from "@/components/ToDoItem";
+import ToDoFooter from "@/components/ToDoFooter";
 
 export default {
 
@@ -20,11 +23,41 @@ export default {
 
   components: {
     ToDoItem,
+    ToDoFooter
   },
 
   setup() {
 
-    const todos = inject('todos')
+    const todosAll = inject('todos');
+    const filter = ref('all');
+
+    const todos = computed(()=> {
+
+      // Button Show All
+      if(filter.value === 'all' ) {
+        return todosAll.value;
+      }
+
+      // Button Show Active to-do
+      if(filter.value === 'active'){
+        return todosAll.value.filter(task => task.state === false);
+      }
+
+      // Button Show Complete to-do
+      if(filter.value === 'completed') {
+        return todosAll.value.filter(task => task.state === true);
+      }
+
+      // Button Clean Completed to-do
+      // if(filter.value === 'clear') {
+      //   return todosAll.value.filter(task => task.state === false);
+      // }
+
+      return console.log(todosAll.value);
+
+    });
+
+    provide('filter', filter);
 
     return {
       todos

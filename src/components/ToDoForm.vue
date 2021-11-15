@@ -3,7 +3,6 @@
     <span class="todo-form__circle-empty"></span>
     <input type="text"
            placeholder="Create a new todo..."
-           tabindex="1"
            autofocus
            v-model.trim="text"
     >
@@ -21,7 +20,6 @@ export default {
 
     const todos = inject('todos');
     const text = ref('');
-    const itemsLeft = inject('itemsLeft');
 
     // Submit Form
     const addToDo = ()=> {
@@ -40,8 +38,6 @@ export default {
 
       todos.value.push(todo)
       text.value = ''
-
-      itemsLeft.value = itemsLeft.value + 1
 
     }
 

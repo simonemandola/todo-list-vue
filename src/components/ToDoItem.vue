@@ -24,26 +24,10 @@ export default {
   setup() {
 
     const todos = inject('todos');
-    const toDoActive = inject('toDoActive');
-    const toDoDuplicated = inject('toDoDuplicated');
-    const itemsLeft = inject('itemsLeft');
 
     const deleteItem = id => {
 
-      todos.value.forEach(todo =>{
-        if(todo.id === id) {
-          if(!todo.state) {
-            itemsLeft.value = itemsLeft.value - 1;
-          }
-        }
-      });
-
-      todos.value = toDoDuplicated.value;
       todos.value = todos.value.filter(item => item.id !== id);
-
-      toDoDuplicated.value = todos.value;
-
-      toDoActive.value = todos.value;
 
     }
 
@@ -51,10 +35,8 @@ export default {
     const taskDone = task => {
         if(!task.state) {
           task.state = !task.state; // Change status and add class 'done'
-          itemsLeft.value = itemsLeft.value - 1;
         } else {
           task.state = !task.state; // Change status and remove class 'done'
-          itemsLeft.value = itemsLeft.value + 1;
         }
     }
 

@@ -11,9 +11,12 @@
   &__inner
     width: 30rem
     @include centerX
+    position: relative
   .drag-text
     margin-top: $margin__2
     text-align: center
+    left: 10%
+    right: 10%
     user-select: none
   &__wrap-list
     box-shadow: 0 .2rem 2rem -.5rem $color__space-cadet-blue
@@ -93,6 +96,9 @@
   button
     color: inherit
     font-size: .75rem
+    &:active
+      opacity: 1
+      color: $color__true-blue
   &__btns-filter
     height: 100%
     @include flex(space-between,center,row)
