@@ -3,15 +3,15 @@
     <span class="text-xxs">{{ itemsLeft }}<span> items left</span></span>
     <div class="todo-footer__btns-filter">
       <button type="button"
-              :class="{ 'active' : btnActive.all }"
+              :class="btnAll"
               @click.prevent="filterBy('all')">All
       </button>
       <button type="button"
-              :class="{ 'active' : btnActive.active }"
+              :class="btnActive"
               @click.prevent="filterBy('active')">Active
       </button>
       <button type="button"
-              :class="{ 'active' : btnActive.completed }"
+              :class="btnCompleted"
               @click.prevent="filterBy('completed')">Completed
       </button>
     </div>
@@ -32,9 +32,54 @@ export default {
     const todos = inject('todos');
     const filter = inject('filter');
 
+
+    let all = true;
+    let active = false;
+    let completed = false;
+
     const filterBy = filterBy =>{
-      filter.value = filterBy
+
+      filter.value = filterBy;
+
     }
+
+    const btnAll = computed(()=>{
+
+      if (filter.value === 'all') {
+        all = true;
+        active = false;
+        completed = false;
+        return { active: all }
+      }
+
+      return console.log();
+    })
+
+    const btnActive = computed(()=> {
+
+      if (filter.value === 'active') {
+        all = false;
+        active = true;
+        completed = false;
+        return {active: active}
+      }
+
+      return console.log();
+
+    });
+
+    const btnCompleted = computed(()=> {
+
+      if (filter.value === 'completed') {
+        all = false;
+        active = false;
+        completed = true;
+        return {active: completed}
+      }
+
+      return console.log()
+
+    })
 
     const itemsLeft = computed(()=>{
       return todos.value.filter(item => item.state !== true).length
@@ -44,18 +89,14 @@ export default {
       todos.value = todos.value.filter(task => task.state === false);
     }
 
-    const btnActive = {
-      all: true,
-      active: false,
-      completed: false
-    };
-
     return {
       itemsLeft,
       filterBy,
       clear,
       todos,
+      btnAll,
       btnActive,
+      btnCompleted
     }
   }
 

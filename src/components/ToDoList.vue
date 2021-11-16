@@ -7,7 +7,7 @@
       ></ToDoItem>
   </transition-group>
   <transition name="fade-up">
-    <ToDoFooter ></ToDoFooter>
+    <ToDoFooter />
   </transition>
 </template>
 
@@ -31,7 +31,7 @@ export default {
     const todosAll = inject('todos');
     const filter = ref('all');
 
-    const todos = computed(()=> {
+    const todos = computed(()=>{
 
       // Button Show All
       if(filter.value === 'all' ) {
@@ -47,11 +47,6 @@ export default {
       if(filter.value === 'completed') {
         return todosAll.value.filter(task => task.state === true);
       }
-
-      // Button Clean Completed to-do
-      // if(filter.value === 'clear') {
-      //   return todosAll.value.filter(task => task.state === false);
-      // }
 
       return console.log(todosAll.value);
 
