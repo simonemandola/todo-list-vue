@@ -32,54 +32,28 @@ export default {
     const todos = inject('todos');
     const filter = inject('filter');
 
-
-    let all = true;
-    let active = false;
-    let completed = false;
-
     const filterBy = filterBy =>{
-
       filter.value = filterBy;
-
     }
 
+    // Button All
     const btnAll = computed(()=>{
-
-      if (filter.value === 'all') {
-        all = true;
-        active = false;
-        completed = false;
-        return { active: all }
-      }
-
+      if (filter.value === 'all') return { active: true }
       return console.log();
     })
 
+    //  Button Active
     const btnActive = computed(()=> {
-
-      if (filter.value === 'active') {
-        all = false;
-        active = true;
-        completed = false;
-        return {active: active}
-      }
-
+      if (filter.value === 'active') return {active: true}
       return console.log();
-
     });
 
+
+    // Button Completed
     const btnCompleted = computed(()=> {
-
-      if (filter.value === 'completed') {
-        all = false;
-        active = false;
-        completed = true;
-        return {active: completed}
-      }
-
+      if (filter.value === 'completed') return {active: true}
       return console.log()
-
-    })
+    });
 
     const itemsLeft = computed(()=>{
       return todos.value.filter(item => item.state !== true).length

@@ -1,11 +1,11 @@
 <template>
-  <transition-group tag="ol" name="fade-up" class="todo-list">
+    <transition-group tag="ol" name="fade-up" class="todo-list">
       <ToDoItem
           v-for="todo in todos"
           :key="todo.id"
           :todo="todo"
       ></ToDoItem>
-  </transition-group>
+    </transition-group>
   <transition name="fade-up">
     <ToDoFooter />
   </transition>
