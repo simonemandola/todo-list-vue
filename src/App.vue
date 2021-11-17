@@ -1,5 +1,5 @@
 <template>
-  <ToDoApp/>
+  <ToDoApp />
 </template>
 
 <script>
@@ -13,6 +13,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>
