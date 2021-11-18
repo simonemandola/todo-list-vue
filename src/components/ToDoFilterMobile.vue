@@ -1,7 +1,6 @@
 <template>
-  <div class="todo-footer">
-    <span class="text-xxs">{{ itemsLeft }}<span> items left</span></span>
-    <div class="todo-footer__btns-filter">
+  <div class="todo-filter-mobile">
+    <div class="todo-filter-mobile__btns-filter">
       <button type="button"
               title="Show All"
               :class="btnAll"
@@ -18,10 +17,6 @@
               @click.prevent="filterBy('completed')">Completed
       </button>
     </div>
-    <button type="button"
-            title="Clear completed items"
-            @click.prevent="clear">Clear Completed
-    </button>
   </div>
 </template>
 
@@ -63,14 +58,9 @@ export default {
       return todos.value.filter(item => item.state !== true).length
     });
 
-    const clear = ()=> {
-      todos.value = todos.value.filter(task => task.state === false);
-    }
-
     return {
       itemsLeft,
       filterBy,
-      clear,
       todos,
       btnAll,
       btnActive,

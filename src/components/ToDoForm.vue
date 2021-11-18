@@ -1,8 +1,10 @@
 <template>
-  <form @submit.prevent="addToDo">
+  <form class="todo-form" @submit.prevent="addToDo">
+    <span class="todo-form__circle-empty"></span>
     <input type="text"
-    placeholder="Añade tarea a la lista"
-    v-model.trim="text"
+           placeholder="Create a new todo..."
+           autofocus
+           v-model.trim="text"
     >
   </form>
 </template>
@@ -18,7 +20,6 @@ export default {
 
     const todos = inject('todos');
     const text = ref('');
-    const itemsLeft = inject('itemsLeft');
 
     // Submit Form
     const addToDo = ()=> {
@@ -38,8 +39,6 @@ export default {
       todos.value.push(todo)
       text.value = ''
 
-      itemsLeft.value = itemsLeft.value + 1
-
     }
 
     return {
@@ -49,7 +48,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

@@ -1,0 +1,35 @@
+// Light Mode Mobile
+
+.light
+  background-image: url("../img/bg-mobile-light.jpg")
+  transition: $transition
+  background-color: $color__white-light-mode
+  .todo-form
+    input
+      color: initial
+      background-color: $color__white-light-mode
+      transition: $transition
+  .todo-list__item,
+  .todo-footer,
+  .todo-filter-mobile
+    background-color: $color__white-light-mode
+    transition: $transition
+  .todo-wrap__wrap-list
+    box-shadow: 0 .4rem 2rem -1rem rgba($color__space-cadet-blue, 50%)
+  .todo-filter-mobile
+    box-shadow: 0 .2rem 2rem -1rem 0 $color__light-grey
+  .todo-list__item
+    border-bottom-color: $color__light-grey
+  .todo-list__btn-check
+    &::after
+      background-color: $color__white-light-mode
+  .todo-wrap__wrap-list
+    border-bottom-left-radius: $border-radius
+    border-bottom-right-radius: $border-radius
+  .todo-footer
+    span,
+    button
+      opacity: 1
+    button:hover,
+    button:active
+      color: $color__true-blue
