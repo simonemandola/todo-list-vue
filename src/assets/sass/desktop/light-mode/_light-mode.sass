@@ -1,0 +1,32 @@
+// Light Mode
+
+.light
+  background-image: url("../img/bg-desktop-light.jpg")
+  transition: $transition
+  background-color: $color__white-light-mode
+  .todo-form
+    input
+      color: initial
+      background-color: $color__white-light-mode
+      transition: $transition
+  .todo-list__item,
+  .todo-footer
+    background-color: $color__white-light-mode
+    transition: $transition
+  .todo-wrap__wrap-list
+    box-shadow: 0 .4rem 2rem -1rem rgba($color__space-cadet-blue, 50%)
+  .todo-list__item
+    border-bottom-color: $color__light-grey
+  .todo-list__btn-check
+    &::after
+      background-color: $color__white-light-mode
+  .todo-wrap__wrap-list
+    border-bottom-left-radius: $border-radius
+    border-bottom-right-radius: $border-radius
+  .todo-footer
+    span,
+    button
+      opacity: 1
+    button:hover,
+    button:active
+      color: $color__soft-grey

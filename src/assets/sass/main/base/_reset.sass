@@ -1,0 +1,27 @@
+// Reset native styles
+
+button
+  border: 0
+  background-color: transparent
+  border-radius: initial
+  padding: 0
+  @include flex(center,center,row)
+  cursor: pointer
+
+a
+  text-decoration: none
+  color: inherit
+
+input
+  border: 0
+  border-radius: 0
+  background-color: transparent
+  padding: 0
+  &:focus
+    outline: none
+
+ul,
+ol
+  list-style: none
+  padding-left: 0
+  margin: 0
