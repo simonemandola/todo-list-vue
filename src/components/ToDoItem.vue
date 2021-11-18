@@ -1,24 +1,35 @@
-<draggable v-model="todos">
-  <template v-slot="{todo}" draggable="true">
-    <li class="todo-list__item">
-      <i role="button" class="icon__check todo-list__btn-check" :class="{ 'check-done' : todo.state }" @click="taskDone(todo)"></i>
-      <span role="button" :class="{ 'done' : todo.state }" @click="taskDone(todo)">{{ todo.text }}</span>
-      <i class="icon__cross" role="button" @click="deleteItem(todo.id)"></i>
-    </li>
-  </template>
-</draggable>
+<template>
+  <li class="todo-list__item">
+    <i
+        :title="(!todo.state) ? 'Mark as completed' : 'Mark as pending'"
+        role="button"
+        class="icon__check todo-list__btn-check"
+        :class="{ 'check-done' : todo.state }"
+        @click="taskDone(todo)"
+    ></i>
+    <span
+        role="button"
+        :class="{ 'done' : todo.state }"
+        @click="taskDone(todo)"
+    >
+      {{ todo.text }}
+    </span>
+    <i
+        title="Delete item"
+        class="icon__cross"
+        role="button"
+        @click="deleteItem(todo.id)"
+    ></i>
+  </li>
+</template>
 
 <script>
 
 import { inject } from "vue";
-import Draggable from "vue3-draggable";
 
 export default {
 
   name: "ToDoItem",
-  components: {
-    Draggable
-  },
 
   props: {
     todo: {
@@ -31,11 +42,7 @@ export default {
 
     const todos = inject('todos');
 
-    const deleteItem = id => {
-
-      todos.value = todos.value.filter(item => item.id !== id);
-
-    }
+    const deleteItem = id => todos.value = todos.value.filter(item => item.id !== id);
 
     // Click on To Do
     const taskDone = task => {

@@ -1,13 +1,18 @@
 <template>
-    <transition-group tag="ol" name="fade-up" class="todo-list">
-      <ToDoItem
-          v-for="todo in todos"
-          :key="todo.id"
-          :todo="todo"
-      ></ToDoItem>
-    </transition-group>
+  <div class="todo-wrap__wrap-list">
+  <transition-group tag="ol" name="fade-up" class="todo-list">
+    <ToDoItem
+        v-for="todo in todos"
+        :key="todo.id"
+        :todo="todo"
+    ></ToDoItem>
+  </transition-group>
   <transition name="fade-up">
     <ToDoFooter />
+  </transition>
+    </div>
+  <transition name="fade-up">
+    <ToDoFilterMobile />
   </transition>
 </template>
 
@@ -16,6 +21,7 @@
 import {computed, inject, provide, ref} from "vue";
 import ToDoItem from "@/components/ToDoItem";
 import ToDoFooter from "@/components/ToDoFooter";
+import ToDoFilterMobile from "@/components/ToDoFilterMobile";
 
 export default {
 
@@ -23,13 +29,22 @@ export default {
 
   components: {
     ToDoItem,
-    ToDoFooter
+    ToDoFooter,
+    ToDoFilterMobile
   },
 
   setup() {
 
     const todosAll = inject('todos');
     const filter = ref('all');
+
+    // const breakpoint = 601
+    // let mobile = ref(false)
+    //
+    // if (window.innerWidth < breakpoint) {
+    //   mobile.value = !mobile.value
+    //   return mobile.value
+    // }
 
     const todos = computed(()=>{
 
@@ -55,7 +70,8 @@ export default {
     provide('filter', filter);
 
     return {
-      todos
+      todos,
+      // mobile
     }
 
   }

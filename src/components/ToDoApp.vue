@@ -4,23 +4,23 @@
         <div class="todo-wrap__inner">
           <header class="header">
             <h1 class="title-h1">Todo</h1>
-            <label>
+            <label :title="(currentMode === 'light') ? 'Toggle to dark mode!' : 'Toggle to light mode!'">
               <input
                   type="checkbox"
                   :checked="(mode.value === 'light') ? checked : false"
                   @click="changeMode"
               >
-              <i :class="(currentMode === 'light') ? 'icon__moon' : 'icon__sun'"></i>
+              <button type="button">
+                <i :class="(currentMode === 'light') ? 'icon__moon' : 'icon__sun'"></i>
+              </button>
             </label>
 
           </header>
           <ToDoForm />
-          <div class="todo-wrap__wrap-list">
-            <ToDoList />
-          </div>
-          <transition name="fade-up">
-            <p  class="text-xxs drag-text">Drag and drop to reorder list</p>
-          </transition>
+          <ToDoList />
+<!--          <transition name="fade-up">-->
+<!--            <p class="text-xxs drag-text">Drag and drop to reorder list</p>-->
+<!--          </transition>-->
         </div>
       </section>
     </main>
@@ -55,10 +55,7 @@ export default {
 
     const currentMode = computed(()=>{
 
-      if(mode.value === 'light') {
-        // document.documentElement.cssText('--color__raisin-black','#fafafa')
-        return mode.value
-      }
+      if(mode.value === 'light') return mode.value
 
       return mode.value
     });

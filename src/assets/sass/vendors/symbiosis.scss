@@ -45,13 +45,6 @@ input[type="color"]::-moz-focus-inner {
     border: 0;
 }
 
-a:focus,
-textarea:focus,
-button:focus,
-input:focus {
-    outline: none;
-}
-
 a,
 button,
 input[type='submit'],

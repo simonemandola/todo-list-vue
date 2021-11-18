@@ -1,7 +1,7 @@
-// Light Mode
+// Light Mode Mobile
 
 .light
-  background-image: url("../img/bg-desktop-light.jpg")
+  background-image: url("../img/bg-mobile-light.jpg")
   transition: $transition
   background-color: $color__white-light-mode
   .todo-form
@@ -10,11 +10,14 @@
       background-color: $color__white-light-mode
       transition: $transition
   .todo-list__item,
-  .todo-footer
+  .todo-footer,
+  .todo-filter-mobile
     background-color: $color__white-light-mode
     transition: $transition
   .todo-wrap__wrap-list
     box-shadow: 0 .4rem 2rem -1rem rgba($color__space-cadet-blue, 50%)
+  .todo-filter-mobile
+    box-shadow: 0 .2rem 2rem -1rem 0 $color__light-grey
   .todo-list__item
     border-bottom-color: $color__light-grey
   .todo-list__btn-check
@@ -29,4 +32,4 @@
       opacity: 1
     button:hover,
     button:active
-      color: $color__soft-grey
+      color: $color__true-blue
