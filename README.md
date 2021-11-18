@@ -1,5 +1,7 @@
 # todo-list-vue
 
+Live preview: https://nifty-turing-f84df9.netlify.app/
+
 ## Project setup
 ```
 npm install
