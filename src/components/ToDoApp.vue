@@ -14,13 +14,12 @@
                 <i :class="(currentMode === 'light') ? 'icon__moon' : 'icon__sun'"></i>
               </button>
             </label>
-
           </header>
           <ToDoForm />
           <ToDoList />
-<!--          <transition name="fade-up">-->
-<!--            <p class="text-xxs drag-text">Drag and drop to reorder list</p>-->
-<!--          </transition>-->
+          <transition name="fade-up">
+            <p class="text-xxs drag-text">Drag and drop to reorder list</p>
+          </transition>
         </div>
       </section>
     </main>

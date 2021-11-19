@@ -1,7 +1,16 @@
 <template>
   <div class="todo-wrap__wrap-list">
-  <transition-group tag="ol" name="fade-up" class="todo-list">
+  <transition-group
+      tag="ol"
+      name="fade-up"
+      class="todo-list"
+  >
     <ToDoItem
+        @drop="onDrop($event, todo)"
+        @dragover.prevent
+        @dragenter.prevent
+        @dragstart="onDragStart($event, todo.id)"
+        draggable="true"
         v-for="todo in todos"
         :key="todo.id"
         :todo="todo"
@@ -38,14 +47,6 @@ export default {
     const todosAll = inject('todos');
     const filter = ref('all');
 
-    // const breakpoint = 601
-    // let mobile = ref(false)
-    //
-    // if (window.innerWidth < breakpoint) {
-    //   mobile.value = !mobile.value
-    //   return mobile.value
-    // }
-
     const todos = computed(()=>{
 
       // Button Show All
@@ -69,9 +70,42 @@ export default {
 
     provide('filter', filter);
 
+    // On Drag Start Function
+    function onDragStart(e, todoId) {
+      e.dataTransfer.dropEffect = 'move'
+      e.dataTransfer.effectAllowed = 'move'
+      // Find Array ID of todoItem from start to toggle it
+      const startFromId = todosAll.value.findIndex(todo => todo.id === todoId)
+      e.dataTransfer.setData('itemId', startFromId)
+    }
+
+    // On Drop Function
+    function onDrop(e, TodoToReplace) {
+
+      let startFromId = e.dataTransfer.getData('itemId')
+
+      const todoIdToReplace = TodoToReplace.id;
+
+      // Find Array ID of todoItem to replace it
+      let replaceToId = todosAll.value.findIndex(todo => todo.id === todoIdToReplace)
+
+      todosAll.value.map(todo => {
+        if (todo === todosAll.value[replaceToId]) {
+          let copyStartId = todosAll.value[startFromId];
+          let copyReplaceId = todosAll.value[replaceToId];
+          todo = todosAll.value[startFromId]
+          todosAll.value[replaceToId] = copyStartId
+          todosAll.value[startFromId] = copyReplaceId
+          return todo
+        }
+      })
+
+    }
+
     return {
       todos,
-      // mobile
+      onDrop,
+      onDragStart
     }
 
   }
